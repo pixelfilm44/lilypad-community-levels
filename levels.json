@@ -1,1 +1,129 @@
-[]
+[
+  {
+    "frogStart": {
+      "y": 5,
+      "x": 0
+    },
+    "size": 6,
+    "name": "Custom Level",
+    "submittedAt": "2026-03-22T19:55:11Z",
+    "moves": 15,
+    "snakeStarts": [],
+    "id": "01D545BB-501F-47A4-8CF1-D3595B013F07",
+    "bridgeOn": false,
+    "formatVersion": 1,
+    "logStarts": [],
+    "author": "Jeggggg",
+    "beeStarts": [],
+    "cells": [
+      {
+        "cell": {
+          "used": false,
+          "active": false,
+          "type": {
+            "goal": {
+              "order": 2
+            }
+          }
+        },
+        "position": {
+          "x": 3,
+          "y": 1
+        }
+      },
+      {
+        "cell": {
+          "used": false,
+          "active": false,
+          "type": {
+            "normal": {}
+          }
+        },
+        "position": {
+          "x": 3,
+          "y": 2
+        }
+      },
+      {
+        "cell": {
+          "used": false,
+          "active": false,
+          "type": {
+            "final": {}
+          }
+        },
+        "position": {
+          "x": 5,
+          "y": 0
+        }
+      },
+      {
+        "cell": {
+          "used": false,
+          "active": false,
+          "type": {
+            "normal": {}
+          }
+        },
+        "position": {
+          "x": 2,
+          "y": 3
+        }
+      },
+      {
+        "cell": {
+          "used": false,
+          "active": false,
+          "type": {
+            "normal": {}
+          }
+        },
+        "position": {
+          "x": 1,
+          "y": 4
+        }
+      },
+      {
+        "cell": {
+          "used": false,
+          "active": false,
+          "type": {
+            "start": {}
+          }
+        },
+        "position": {
+          "x": 0,
+          "y": 5
+        }
+      },
+      {
+        "cell": {
+          "used": false,
+          "active": false,
+          "type": {
+            "normal": {}
+          }
+        },
+        "position": {
+          "x": 4,
+          "y": 1
+        }
+      },
+      {
+        "cell": {
+          "used": false,
+          "active": false,
+          "type": {
+            "goal": {
+              "order": 1
+            }
+          }
+        },
+        "position": {
+          "x": 2,
+          "y": 4
+        }
+      }
+    ]
+  }
+]
