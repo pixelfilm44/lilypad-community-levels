@@ -1,0 +1,97 @@
+name: Approve Community Level
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  publish-level:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Extract and append level
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = context.payload.issue.body;
+
+            // Extract JSON from code fence
+            const match = body.match(/```json\s*([\s\S]*?)\s*```/);
+            if (!match) {
+              core.setFailed('No JSON code fence found in issue body');
+              return;
+            }
+
+            let level;
+            try {
+              level = JSON.parse(match[1]);
+            } catch (e) {
+              core.setFailed(`Invalid JSON: ${e.message}`);
+              return;
+            }
+
+            // Assign server-side ID and timestamp if not present
+            const crypto = require('crypto');
+            if (!level.id) {
+              level.id = crypto.randomUUID();
+            }
+            if (!level.submittedAt) {
+              level.submittedAt = new Date().toISOString();
+            }
+
+            // Load existing levels
+            let levels = [];
+            try {
+              const data = fs.readFileSync('levels.json', 'utf8');
+              levels = JSON.parse(data);
+            } catch (e) {
+              console.log('No existing levels.json, starting fresh');
+            }
+
+            // Check for duplicate ID
+            if (levels.some(l => l.id === level.id)) {
+              core.setFailed(`Level with ID ${level.id} already exists`);
+              return;
+            }
+
+            // Append and write
+            levels.push(level);
+            fs.writeFileSync('levels.json', JSON.stringify(levels, null, 2));
+
+            core.exportVariable('LEVEL_NAME', level.name);
+            core.exportVariable('LEVEL_AUTHOR', level.author);
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add levels.json
+          git commit -m "Add community level: ${LEVEL_NAME} by ${LEVEL_AUTHOR}"
+          git push origin gh-pages
+
+      - name: Close issue with comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `✅ Level **${process.env.LEVEL_NAME}** by **${process.env.LEVEL_AUTHOR}** has been published to Community Creations!`
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed'
+            });
