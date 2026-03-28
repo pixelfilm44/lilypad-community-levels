@@ -125,7 +125,7 @@
         }
       }
     ],
-    "averageRating": 0.0,
+    "averageRating": 0,
     "ratingCount": 0
   },
   {
@@ -332,7 +332,14 @@
     "beeStarts": [],
     "id": "631D2CF6-FA2E-4D0F-B075-D266673B8212",
     "submittedAt": "2026-03-22T20:15:52Z",
-    "averageRating": 0.0,
+    "averageRating": 0,
     "ratingCount": 0
+  },
+  {
+    "levelID": "631D2CF6-FA2E-4D0F-B075-D266673B8212",
+    "rating": 5,
+    "gamePlayerID": "07EF7E7391987C14B72DBF8A8418C20F48B9A682A2FD92C82CAB6797313D69A5",
+    "id": "18556b8c-9725-4265-8a24-f6c6241f6d30",
+    "submittedAt": "2026-03-28T19:00:31.760Z"
   }
 ]
