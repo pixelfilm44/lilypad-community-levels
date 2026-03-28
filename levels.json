@@ -124,9 +124,7 @@
           "y": 4
         }
       }
-    ],
-    "averageRating": 0,
-    "ratingCount": 0
+    ]
   },
   {
     "formatVersion": 1,
@@ -331,9 +329,7 @@
     "logStarts": [],
     "beeStarts": [],
     "id": "631D2CF6-FA2E-4D0F-B075-D266673B8212",
-    "submittedAt": "2026-03-22T20:15:52Z",
-    "averageRating": 0,
-    "ratingCount": 0
+    "submittedAt": "2026-03-22T20:15:52Z"
   },
   {
     "levelID": "631D2CF6-FA2E-4D0F-B075-D266673B8212",
